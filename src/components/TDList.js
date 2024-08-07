@@ -42,12 +42,15 @@ export default function TDList() {
             Add Task
           </button>
         </div>
-        <div className="row row-cols-1 row-cols-md-2 my-2 m-0">
+        <div
+          className="row row-cols-1 row-cols-md-2 my-2 m-0 mt-4"
+          style={{ justifyContent: "center" }}
+        >
           {tasks.map((task) => (
             <div
               className="card border-success mb-3"
               data-bs-theme="dark"
-              style={{ maxWidth: "18rem" }}
+              style={{ margin: "0px 5px", maxWidth: "18rem" }}
             >
               <div className="card-body">
                 <p className="card-text">{task.text}</p>

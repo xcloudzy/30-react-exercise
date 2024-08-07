@@ -18,7 +18,7 @@ import Pagination from "./components/Pagination";
 import Cart from "./components/Cart";
 import { CartProvider } from "./context/CartContext";
 import TDList from "./components/TDList";
-import Footer from "./components/Footer";
+import { Footer } from "./components/Footer";
 
 function App() {
   const quotes = [
@@ -43,27 +43,29 @@ function App() {
       <Router>
         <CartProvider>
           <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/counter" element={<Counter />} />
-            <Route path="/dlist" element={<DList />} />
-            <Route path="/toggle" element={<Toggle />} />
-            <Route path="/fetchdata" element={<FetchData />} />
-            <Route path="/timecount" element={<TimeCount />} />
-            <Route path="/userinput" element={<UserInput />} />
-            <Route path="/randomquotes" element={<RandomQ />} />
-            <Route path="/uploadimage" element={<Upload />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/weather" element={<Weather />} />
-            <Route path="/search" element={<Search quotes={quotes} />} />
-            <Route path="/colorpick" element={<PickColor />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/tdlist" element={<TDList />} />
-            <Route
-              path="/pagination"
-              element={<Pagination quotes={quotes} quotesPerPage={2} />}
-            />
-          </Routes>
+          <div className="content">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/counter" element={<Counter />} />
+              <Route path="/dlist" element={<DList />} />
+              <Route path="/toggle" element={<Toggle />} />
+              <Route path="/fetchdata" element={<FetchData />} />
+              <Route path="/timecount" element={<TimeCount />} />
+              <Route path="/userinput" element={<UserInput />} />
+              <Route path="/randomquotes" element={<RandomQ />} />
+              <Route path="/uploadimage" element={<Upload />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/weather" element={<Weather />} />
+              <Route path="/search" element={<Search quotes={quotes} />} />
+              <Route path="/colorpick" element={<PickColor />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/tdlist" element={<TDList />} />
+              <Route
+                path="/pagination"
+                element={<Pagination quotes={quotes} quotesPerPage={2} />}
+              />
+            </Routes>
+          </div>
           <Footer />
         </CartProvider>
       </Router>
