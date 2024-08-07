@@ -4,7 +4,7 @@
 }
 
 .content {
-  min-height: calc(100vh - 25vh);
+  min-height: calc(100vh - 30vh);
 
   button {
     border-radius: 10px;
