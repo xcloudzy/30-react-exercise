@@ -19,8 +19,8 @@ export const Footer = () => {
             target="_blank"
             className="d-flex align-items-center p-0 text-dark"
           >
-            <img alt="logo" src="/vite.svg" width="30px" />
-            <span className="ms-4 h5 mb-0 font-weight-bold text-light">
+            <img alt="logo" src="/avatar.svg" width="30px" />
+            <span className="ms-2 h5 mb-0 font-weight-bold text-light">
               Cloudzy
             </span>
           </Link>

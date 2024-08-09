@@ -7,8 +7,8 @@ const Navbar = () => {
       <nav className="navbar bg-body-dark" data-bs-theme="dark">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
-            <img src="/vite.svg" alt="Bootstrap" width="30" height="24" /> React
-            Project Codes
+            <img src="/avatar.svg" alt="Bootstrap" width="30" height="24" />{" "}
+            React Project Codes
           </Link>
           <form className="d-flex" role="search">
             <input
@@ -194,6 +194,28 @@ const Navbar = () => {
             to="/tdlist"
           >
             TODO
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link
+            className={`nav-link ${
+              location.pathname === "/rpage" ? "active" : ""
+            }`}
+            aria-disabled="true"
+            to="/rpage"
+          >
+            Page Reducer
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link
+            className={`nav-link ${
+              location.pathname === "/auth" ? "active" : ""
+            }`}
+            aria-disabled="true"
+            to="/auth"
+          >
+            Auth
           </Link>
         </li>
       </ul>
