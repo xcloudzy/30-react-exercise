@@ -218,6 +218,17 @@ const Navbar = () => {
             Auth
           </Link>
         </li>
+        <li className="nav-item">
+          <Link
+            className={`nav-link ${
+              location.pathname === "/count" ? "active" : ""
+            }`}
+            aria-disabled="true"
+            to="/count"
+          >
+            Count Reducer
+          </Link>
+        </li>
       </ul>
     </nav>
   );

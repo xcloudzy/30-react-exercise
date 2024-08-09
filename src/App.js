@@ -21,6 +21,7 @@ import TDList from "./components/TDList";
 import { Footer } from "./components/Footer";
 import PageReducer from "./components/PageReducer";
 import Authenticate from "./components/Authenticate";
+import Count from "./components/Count";
 
 function App() {
   const quotes = [
@@ -64,6 +65,7 @@ function App() {
               <Route path="/tdlist" element={<TDList />} />
               <Route path="/rpage" element={<PageReducer />} />
               <Route path="/auth" element={<Authenticate />} />
+              <Route path="/count" element={<Count />} />
               <Route
                 path="/pagination"
                 element={<Pagination quotes={quotes} quotesPerPage={2} />}
