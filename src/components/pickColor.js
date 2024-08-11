@@ -57,12 +57,13 @@ export const PickColor = () => {
         <HexColorPicker color={color} onChange={setColor} />
         <button
           type="button"
+          style={{ backgroundColor: color }}
           className="btn btn-primary position-relative"
           onClick={handleClick}
         >
           {color}
           {msg ? (
-            <span className="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-danger">
+            <span className="position-absolute top-0 start-10 translate-middle badge rounded-pill bg-danger">
               Hex Color Copied
               <span className="visually-hidden">unread messages</span>
             </span>
