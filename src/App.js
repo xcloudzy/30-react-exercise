@@ -27,6 +27,8 @@ import Drag from "./components/Drag";
 import Translate from "./components/Translate";
 import { TranslateProvider } from "./context/TranslateContext";
 import FetchApi from "./components/FetchApi";
+import MultiState from "./components/MultiState";
+import Gallery from "./components/Gallery";
 
 function App() {
   const quotes = [
@@ -76,6 +78,8 @@ function App() {
                   <Route path="/drag" element={<Drag />} />
                   <Route path="/translate" element={<Translate />} />
                   <Route path="/fetchapi" element={<FetchApi />} />
+                  <Route path="/multistate" element={<MultiState />} />
+                  <Route path="/gallery" element={<Gallery />} />
                   <Route
                     path="/pagination"
                     element={<Pagination quotes={quotes} quotesPerPage={2} />}

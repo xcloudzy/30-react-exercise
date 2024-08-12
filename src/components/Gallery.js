@@ -1,4 +1,6 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useState } from "react";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 const initialState = {
   currentImageIndex: 0,
@@ -44,6 +46,34 @@ const images = [
 ];
 
 export default function Gallery() {
+  const [copy, setCopy] = useState("");
+  const codeString = `import React, { useReducer } from "react";
+
+const initialState = {
+  currentImageIndex: 0,
+};
+
+const imageReducer = (state, action) => {
+  switch (action.type) {
+    case "NEXT_IMAGE":
+      return {
+        currentImageIndex: state.currentImageIndex + 1,
+      };
+    case "PREVIOUS_IMAGE":
+      return {
+        currentImageIndex: state.currentImageIndex - 1,
+      };
+    default:
+      return state;
+  }
+};
+
+const images = [
+  "https://scontent.fixc4-2.fna.fbcdn.net/v/t39.30808-6/393823228_668266505435016_1755422933781123325_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=7KeSNjnFy4AQ7kNvgFJQTPq&_nc_ht=scontent.fixc4-2.fna&oh=00_AYBl0r1Vtu3zuL3ZSJvfXwzdDtH94XLnZTFEQpcM7niXbA&oe=66C047CF",
+  "https://scontent.fixc4-3.fna.fbcdn.net/v/t39.30808-6/393589858_663752179219782_5325694991398824267_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_ohc=H__ffEeGSm4Q7kNvgE6ewMI&_nc_ht=scontent.fixc4-3.fna&oh=00_AYDhwY11KpkM_75t78r75oXzET3MrxFllCH0Sqv0Zlmjdg&oe=66C05787",
+];
+
+export default function Gallery() {
   const [state, dispatch] = useReducer(imageReducer, initialState);
   const currentImage = images[state.currentImageIndex];
 
@@ -58,6 +88,94 @@ export default function Gallery() {
           Prev
         </button>
         <button onClick={() => dispatch({ type: "NEXT_IMAGE" })}>Next</button>
+      </div>
+    </>
+  );
+}
+`;
+  const [state, dispatch] = useReducer(imageReducer, initialState);
+  const currentImage = images[state.currentImageIndex];
+
+  return (
+    <>
+      <h2>Image Gallery using useReducer</h2>
+      <div className="d-flex" style={{ justifyContent: "space-between" }}>
+        <button
+          className="mx-4"
+          style={{ fontSize: "25px" }}
+          onClick={() => dispatch({ type: "PREVIOUS_IMAGE" })}
+        >
+          &lt;
+        </button>
+        <img class="img-fluid mb-3 mt-3" src={currentImage} alt="Hope" />
+        <button
+          className="mx-4"
+          style={{ fontSize: "25px" }}
+          onClick={() => dispatch({ type: "NEXT_IMAGE" })}
+        >
+          &gt;
+        </button>
+      </div>
+      <div
+        className="mt-4 container"
+        style={{
+          display: "flex",
+          textAlign: "start",
+          justifyContent: "center",
+        }}
+      >
+        <div
+          style={{
+            minWidth: "40%",
+            backgroundColor: "#29344A",
+            borderRadius: "10px",
+          }}
+        >
+          <div className="d-flex justify-content-between px-4 text-white text-xs align-items-center">
+            <p className="text-sm mt-3 ">Example Code</p>
+            {copy ? (
+              <button
+                style={{ backgroundColor: "#29344A", outline: "none" }}
+                className="mt-2 d-inline-flex align-items-center gap-1 mb-2"
+              >
+                <span className="text-base mt-1">
+                  <ion-icon name="clipboard"></ion-icon>
+                </span>
+                Copied!
+              </button>
+            ) : (
+              <button
+                className="mt-2 d-inline-flex align-items-center gap-1 mb-2"
+                onClick={() => {
+                  navigator.clipboard.writeText(codeString);
+                  setCopy(true);
+                  setTimeout(() => {
+                    setCopy(false);
+                  }, 2000);
+                }}
+              >
+                <span className="text-base mt-1">
+                  <ion-icon name="clipboard"></ion-icon>
+                </span>
+                Copy Code
+              </button>
+            )}
+          </div>
+          <SyntaxHighlighter
+            language="jsx"
+            style={atomOneDark}
+            customStyle={{
+              padding: "25px",
+              height: "100",
+              borderBottomLeftRadius: "10px",
+              borderBottomRightRadius: "10px",
+              marginBottom: 0,
+            }}
+            wrapLongLines={true}
+          >
+            {codeString}
+          </SyntaxHighlighter>
+        </div>
       </div>
     </>
   );

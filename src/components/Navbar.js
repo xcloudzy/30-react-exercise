@@ -262,6 +262,28 @@ const Navbar = () => {
             FetchAPI
           </Link>
         </li>
+        <li className="nav-item">
+          <Link
+            className={`nav-link ${
+              location.pathname === "/multistate" ? "active" : ""
+            }`}
+            aria-disabled="true"
+            to="/multistate"
+          >
+            MultiState
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link
+            className={`nav-link ${
+              location.pathname === "/gallery" ? "active" : ""
+            }`}
+            aria-disabled="true"
+            to="/gallery"
+          >
+            Gallery
+          </Link>
+        </li>
       </ul>
     </nav>
   );
