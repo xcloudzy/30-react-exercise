@@ -1,77 +1,81 @@
 import React, { useState } from "react";
-import { useAuth } from "../context/AuthContext";
+import { useTranslate } from "../context/TranslateContext";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
-export default function Authenticate() {
-  const { user, login, logout } = useAuth();
+export default function Translate() {
+  const { setLang, translate } = useTranslate();
   const [copy, setCopy] = useState("");
-  const codeString = `//Auth Js
-
-import React from "react";
-import { useAuth } from "../context/AuthContext";
-
-export default function Authenticate() {
-  const { user, login, logout } = useAuth();
-
-  return (
-    <>
-      <div>
-        <h1>User Authentication Using useContext()</h1>
-        {user ? (
-          <div>
-            <h2>Welcome, {user.username}</h2>
-            <button onClick={logout}>Logout</button>
-          </div>
-        ) : (
-          <button onClick={() => login({ username: "user123" })}>Login</button>
-        )}
-      </div>
-    </>
-  );
-}
-  
-  //Auth Context 
+  const codeString = `// Translate Context
 
 import { createContext, useContext, useState } from "react";
 
-const AuthContext = createContext();
+const TranslateContext = createContext();
 
-export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
+export const useTranslate = () => {
+  return useContext(TranslateContext);
+};
 
-  const login = (userData) => {
-    setUser(userData);
+export function TranslateProvider({ children }) {
+  const [lang, setLang] = useState("en");
+  const TranslatedString = {
+    en: {
+      greeting: "Hello!",
+      welcome: "Welcome To My App",
+    },
+    es: {
+      greeting: "Hola Mundo!",
+      welcome: "Bienvenido a mi aplicacion",
+    },
   };
 
-  const logout = () => {
-    setUser(null);
+  const translate = (key) => {
+    return TranslatedString[lang][key];
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <TranslateContext.Provider value={{ lang, setLang, translate }}>
       {children}
-    </AuthContext.Provider>
+    </TranslateContext.Provider>
   );
 }
 
-export function useAuth() {
-  return useContext(AuthContext);
+// Translate Main
+
+import React from "react";
+import { useTranslate } from "../context/TranslateContext";
+
+export default function Translate() {
+  const { setLang, translate } = useTranslate();
+
+  const handleLangChange = (newLang) => {
+    setLang(newLang);
+  };
+
+  return (
+    <>
+      <h1 className="mb-3">Translate</h1>
+      <p>{translate("greeting")}</p>
+      <p>{translate("welcome")}</p>
+      <button onClick={() => handleLangChange("en")}>English</button>
+      <button onClick={() => handleLangChange("es")}>Espanol</button>
+    </>
+  );
 }
 `;
+
+  const handleLangChange = (newLang) => {
+    setLang(newLang);
+  };
 
   return (
     <>
       <div>
-        <h1>User Authentication Using useContext()</h1>
-        {user ? (
-          <div>
-            <h2>Welcome, {user.username}</h2>
-            <button onClick={logout}>Logout</button>
-          </div>
-        ) : (
-          <button onClick={() => login({ username: "user123" })}>Login</button>
-        )}
+        <h1 className="mb-3">Translate</h1>
+        <p>{translate("greeting")}</p>
+        <p>{translate("welcome")}</p>
+        <button onClick={() => handleLangChange("en")}>English</button>
+        <button onClick={() => handleLangChange("es")}>Espanol</button>
       </div>
       <div
         className="mt-4"

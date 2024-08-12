@@ -22,6 +22,10 @@ import { Footer } from "./components/Footer";
 import PageReducer from "./components/PageReducer";
 import Authenticate from "./components/Authenticate";
 import Count from "./components/Count";
+import { AuthProvider } from "./context/AuthContext";
+import Drag from "./components/Drag";
+import Translate from "./components/Translate";
+import { TranslateProvider } from "./context/TranslateContext";
 
 function App() {
   const quotes = [
@@ -44,36 +48,42 @@ function App() {
       }}
     >
       <Router>
-        <CartProvider>
-          <Navbar />
-          <div className="content">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/counter" element={<Counter />} />
-              <Route path="/dlist" element={<DList />} />
-              <Route path="/toggle" element={<Toggle />} />
-              <Route path="/fetchdata" element={<FetchData />} />
-              <Route path="/timecount" element={<TimeCount />} />
-              <Route path="/userinput" element={<UserInput />} />
-              <Route path="/randomquotes" element={<RandomQ />} />
-              <Route path="/uploadimage" element={<Upload />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/weather" element={<Weather />} />
-              <Route path="/search" element={<Search quotes={quotes} />} />
-              <Route path="/colorpick" element={<PickColor />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/tdlist" element={<TDList />} />
-              <Route path="/rpage" element={<PageReducer />} />
-              <Route path="/auth" element={<Authenticate />} />
-              <Route path="/count" element={<Count />} />
-              <Route
-                path="/pagination"
-                element={<Pagination quotes={quotes} quotesPerPage={2} />}
-              />
-            </Routes>
-          </div>
-          <Footer />
-        </CartProvider>
+        <AuthProvider>
+          <CartProvider>
+            <TranslateProvider>
+              <Navbar />
+              <div className="content">
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/counter" element={<Counter />} />
+                  <Route path="/dlist" element={<DList />} />
+                  <Route path="/toggle" element={<Toggle />} />
+                  <Route path="/fetchdata" element={<FetchData />} />
+                  <Route path="/timecount" element={<TimeCount />} />
+                  <Route path="/userinput" element={<UserInput />} />
+                  <Route path="/randomquotes" element={<RandomQ />} />
+                  <Route path="/uploadimage" element={<Upload />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/weather" element={<Weather />} />
+                  <Route path="/search" element={<Search quotes={quotes} />} />
+                  <Route path="/colorpick" element={<PickColor />} />
+                  <Route path="/cart" element={<Cart />} />
+                  <Route path="/tdlist" element={<TDList />} />
+                  <Route path="/rpage" element={<PageReducer />} />
+                  <Route path="/auth" element={<Authenticate />} />
+                  <Route path="/count" element={<Count />} />
+                  <Route path="/drag" element={<Drag />} />
+                  <Route path="/translate" element={<Translate />} />
+                  <Route
+                    path="/pagination"
+                    element={<Pagination quotes={quotes} quotesPerPage={2} />}
+                  />
+                </Routes>
+              </div>
+              <Footer />
+            </TranslateProvider>
+          </CartProvider>
+        </AuthProvider>
       </Router>
     </div>
   );

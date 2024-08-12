@@ -210,6 +210,17 @@ const Navbar = () => {
         <li className="nav-item">
           <Link
             className={`nav-link ${
+              location.pathname === "/count" ? "active" : ""
+            }`}
+            aria-disabled="true"
+            to="/count"
+          >
+            Count Reducer
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link
+            className={`nav-link ${
               location.pathname === "/auth" ? "active" : ""
             }`}
             aria-disabled="true"
@@ -221,12 +232,23 @@ const Navbar = () => {
         <li className="nav-item">
           <Link
             className={`nav-link ${
-              location.pathname === "/count" ? "active" : ""
+              location.pathname === "/drag" ? "active" : ""
             }`}
             aria-disabled="true"
-            to="/count"
+            to="/drag"
           >
-            Count Reducer
+            Draggable
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link
+            className={`nav-link ${
+              location.pathname === "/translate" ? "active" : ""
+            }`}
+            aria-disabled="true"
+            to="/translate"
+          >
+            Translate
           </Link>
         </li>
       </ul>
