@@ -74,7 +74,9 @@ export default function Translate() {
         <h1 className="mb-3">Translate</h1>
         <p>{translate("greeting")}</p>
         <p>{translate("welcome")}</p>
-        <button onClick={() => handleLangChange("en")}>English</button>
+        <button className="mx-2" onClick={() => handleLangChange("en")}>
+          English
+        </button>
         <button onClick={() => handleLangChange("es")}>Espanol</button>
       </div>
       <div

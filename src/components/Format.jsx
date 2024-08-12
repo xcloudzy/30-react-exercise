@@ -1,56 +1,49 @@
-// Translate Context
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
-import { createContext, useContext, useState } from "react";
+export default function FetchApi() {
+  const [data1, setData1] = useState([]);
+  const [data2, setData2] = useState([]);
 
-const TranslateContext = createContext();
+  useEffect(() => {
+    axios
+      .get("https://jsonplaceholder.typicode.com/posts/1")
+      .then((res) => {
+        setData1(res.data);
+      })
+      .catch((error) => {
+        console.error("error", error);
+      });
 
-export const useTranslate = () => {
-  return useContext(TranslateContext);
-};
-
-export function TranslateProvider({ children }) {
-  const [lang, setLang] = useState("en");
-  const TranslatedString = {
-    en: {
-      greeting: "Hello!",
-      welcome: "Welcome To My App",
-    },
-    es: {
-      greeting: "Hola Mundo!",
-      welcome: "Bienvenido a mi aplicacion",
-    },
-  };
-
-  const translate = (key) => {
-    return TranslatedString[lang][key];
-  };
-
-  return (
-    <TranslateContext.Provider value={{ lang, setLang, translate }}>
-      {children}
-    </TranslateContext.Provider>
-  );
-}
-
-// Translate Main
-
-import React from "react";
-import { useTranslate } from "../context/TranslateContext";
-
-export default function Translate() {
-  const { setLang, translate } = useTranslate();
-
-  const handleLangChange = (newLang) => {
-    setLang(newLang);
-  };
+    axios
+      .get("https://jsonplaceholder.typicode.com/posts/2")
+      .then((res) => {
+        setData2(res.data);
+      })
+      .catch((error) => {
+        console.error("error", error);
+      });
+  }, []);
 
   return (
     <>
-      <h1 className="mb-3">Translate</h1>
-      <p>{translate("greeting")}</p>
-      <p>{translate("welcome")}</p>
-      <button onClick={() => handleLangChange("en")}>English</button>
-      <button onClick={() => handleLangChange("es")}>Espanol</button>
+      <div>Fetch Multiple API using Axios</div>
+      <h1>FirstData</h1>
+      <div>
+        <h4>ID : {data1.id}</h4>
+        <h4>Title</h4>
+        <p>{data1.title}</p>
+        <h4>Body</h4>
+        <p>{data1.body}</p>
+      </div>
+      <h1>SecondData</h1>
+      <div>
+        <h4>ID : {data2.id}</h4>
+        <h4>Title</h4>
+        <p>{data2.title}</p>
+        <h4>Body</h4>
+        <p>{data2.body}</p>
+      </div>
     </>
   );
 }

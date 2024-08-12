@@ -251,6 +251,17 @@ const Navbar = () => {
             Translate
           </Link>
         </li>
+        <li className="nav-item">
+          <Link
+            className={`nav-link ${
+              location.pathname === "/fetchapi" ? "active" : ""
+            }`}
+            aria-disabled="true"
+            to="/fetchapi"
+          >
+            FetchAPI
+          </Link>
+        </li>
       </ul>
     </nav>
   );

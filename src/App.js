@@ -26,6 +26,7 @@ import { AuthProvider } from "./context/AuthContext";
 import Drag from "./components/Drag";
 import Translate from "./components/Translate";
 import { TranslateProvider } from "./context/TranslateContext";
+import FetchApi from "./components/FetchApi";
 
 function App() {
   const quotes = [
@@ -74,6 +75,7 @@ function App() {
                   <Route path="/count" element={<Count />} />
                   <Route path="/drag" element={<Drag />} />
                   <Route path="/translate" element={<Translate />} />
+                  <Route path="/fetchapi" element={<FetchApi />} />
                   <Route
                     path="/pagination"
                     element={<Pagination quotes={quotes} quotesPerPage={2} />}
