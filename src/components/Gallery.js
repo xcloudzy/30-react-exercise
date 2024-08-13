@@ -28,8 +28,6 @@ const images = [
   "https://i.pinimg.com/564x/83/00/74/8300746cc4f016c52ec585f9ead677fe.jpg",
   "https://assets.teenvogue.com/photos/5ae0d8c47ec0444ce4daa37e/16:9/w_1600,c_limit/hopemikaelson-lede.jpg",
   "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da847f8eb73c1ae53af7bfd3389d",
-  "https://static.wikia.nocookie.net/alex-gilbert-series/images/a/a3/Gwegw4hng4w3ihno4gh.jpg/revision/latest?cb=20210817044730",
-  "https://www.reddit.com/media?url=https%3A%2F%2Fpreview.redd.it%2Fhope-mikaelson-slayed-in-this-episode-of-season-4-v0-hzld0q6b1o6d1.jpg%3Fwidth%3D640%26crop%3Dsmart%26auto%3Dwebp%26s%3D6d8913ba3cc62ff1f0126c5b3eb5e0aec117b4fd",
   "https://img.wattpad.com/cover/251661333-288-k281930.jpg",
   "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ad7572ba-5b00-4602-bb73-057ed0a6a521/df6y08q-592c2c48-01fa-481c-81c6-4cf0e366b834.jpg/v1/fill/w_894,h_894,q_70,strp/legacies___hope_mikaelson_by_katitoomes_df6y08q-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTAyNCIsInBhdGgiOiJcL2ZcL2FkNzU3MmJhLTViMDAtNDYwMi1iYjczLTA1N2VkMGE2YTUyMVwvZGY2eTA4cS01OTJjMmM0OC0wMWZhLTQ4MWMtODFjNi00Y2YwZTM2NmI4MzQuanBnIiwid2lkdGgiOiI8PTEwMjQifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.ED9SHjYsixSUyBtfHHvdK9zGZIObC4Sn-eyHzWSje0k",
   "https://c.tenor.com/flkkkhUPqKMAAAAd/tenor.gif",
@@ -41,7 +39,6 @@ const images = [
   "https://scontent.fixc4-3.fna.fbcdn.net/v/t39.30808-6/327732227_5814583118591418_2853635118153131524_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=_543WCGM7oIQ7kNvgHSMGS1&_nc_ht=scontent.fixc4-3.fna&oh=00_AYA5yifN-yZMIaAzEaOFQfidvvpaV9X4EWnuIMC-_furlw&oe=66C03B65",
   "https://static1.srcdn.com/wordpress/wp-content/uploads/2022/03/Legacies-Hope-has-become-worse-than-Klaus.jpg?q=50&fit=crop&w=1100&h=618&dpr=1.5",
   "https://www.lizdress.com/media/catalog/product/cache/ecd051e9670bd57df35c8f0b122d8aea/image/14346a25/hope-mikaelson-burgundy-red-dress-in-legacies.jpg",
-  "https://static.wikia.nocookie.net/the-legacy-of-to-tvd/images/2/27/Hope_bloodline2.png/revision/latest?cb=20200705020142",
   "https://www.usaleatherfactory.com/wp-content/uploads/2023/11/hope-mikaelson-legacies-season-4-quilted-leather-jacket-640x766.jpg.webp",
 ];
 
@@ -102,20 +99,32 @@ export default function Gallery() {
       <div className="d-flex" style={{ justifyContent: "space-between" }}>
         <button
           className="mx-4"
-          style={{ fontSize: "25px" }}
+          disabled={state.currentImageIndex === 0}
+          style={{
+            fontSize: "25px",
+            color: "white",
+            backgroundColor: state.currentImageIndex === 0 ? "#423434" : "",
+          }}
           onClick={() => dispatch({ type: "PREVIOUS_IMAGE" })}
         >
           &lt;
         </button>
-        <img class="img-fluid mb-3 mt-3" src={currentImage} alt="Hope" />
+        <img className="img-fluid mb-3 mt-3" src={currentImage} alt="Hope" />
         <button
           className="mx-4"
-          style={{ fontSize: "25px" }}
+          style={{
+            fontSize: "25px",
+            color: "white",
+            backgroundColor:
+              state.currentImageIndex === images.length - 1 ? "#423434" : "",
+          }}
           onClick={() => dispatch({ type: "NEXT_IMAGE" })}
+          disabled={state.currentImageIndex === images.length - 1}
         >
           &gt;
         </button>
       </div>
+
       <div
         className="mt-4 container"
         style={{
